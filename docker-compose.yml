@@ -1,0 +1,51 @@
+version: "2"
+services:
+    web:
+        image: nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        links:
+            - "proxy:proxy.int.secrz.com"
+        volumes:
+            - ./docker-config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ./:/var/www/html:nocopy
+            - ./docker-config/nginx/localhost.crt:/etc/nginx/ssl/localhost.crt
+            - ./docker-config/nginx/localhost.key:/etc/nginx/ssl/localhost.key
+
+    php:
+        build:
+            context: .
+            dockerfile: ./docker-config/php/Dockerfile
+        links:
+            - "proxy:proxy.int.secrz.com"
+        volumes:
+            - ./:/var/www/html:nocopy
+            - ./docker-config/php/php.ini:/usr/local/etc/php/php.ini
+            - ./docker-config/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+
+    db_BASE:
+        image: mariadb:10.3
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ROOT_PASSWORD=rootpw
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=BASE
+            - MYSQL_USER=app
+            - MYSQL_PASSWORD=password
+        volumes:
+            - ./docker-config/mysql/mysql.cnf:/etc/mysql/conf.d/lidl.cnf
+            - BASE-mysql-sync:/var/lib/mysql:nocopy
+
+    proxy:
+        image: bachp/cntlm
+        environment:
+            - CNTLM_PROXY
+            - CNTLM_USERNAME
+            - CNTLM_PASSWORD
+            - CNTLM_DOMAIN
+
+volumes:
+    BASE-mysql-sync:
