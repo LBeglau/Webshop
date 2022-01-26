@@ -3,13 +3,13 @@ services:
     web:
         image: nginx
         ports:
-            - "80:80"
+            - "8888:80"
             - "443:443"
         links:
             - "proxy:proxy.int.secrz.com"
         volumes:
-            - ./docker-config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
             - ./:/var/www/html:nocopy
+            - ./docker-config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
             - ./docker-config/nginx/localhost.crt:/etc/nginx/ssl/localhost.crt
             - ./docker-config/nginx/localhost.key:/etc/nginx/ssl/localhost.key
 

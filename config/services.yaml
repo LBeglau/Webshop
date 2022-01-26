@@ -11,6 +11,22 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+    App\Service\Helper\UserHelper:
+        # redundant thanks to _defaults, but value is overridable on each service
+        autowire: true
+
+    App\Entity\User:
+        # redundant thanks to _defaults, but value is overridable on each service
+        autowire: true
+
+    App\Controller\HomeController:
+        # redundant thanks to _defaults, but value is overridable on each service
+        autowire: true
+
+    App\Controller\RegisterController:
+        # redundant thanks to _defaults, but value is overridable on each service
+        autowire: true
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
