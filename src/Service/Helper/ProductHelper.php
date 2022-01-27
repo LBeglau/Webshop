@@ -39,5 +39,14 @@ class ProductHelper
         return true;
     }
 
+    public function deleteProduct(int $id){
+        $product = $this->prodRepository->findBy([
+            'id' => $id
+        ]);
+        dump($product);die();
+        $this->em->remove($product);
+        $this->em->flush();
+        return $this->getProducts();
+    }
 
 }
