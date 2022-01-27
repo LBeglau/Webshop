@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Product;
+use App\Entity\User;
+use App\Form\ProductType;
+use App\Service\Helper\ProductHelper;
+use App\Service\Helper\UserHelper;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * @Route("/admin", name="admin.")
+ */
+class AdminController extends AbstractController
+{
+
+    private UserHelper $userHelper;
+    private ProductHelper $productHelper;
+    private User $user;
+    private Product $product;
+
+    public function __construct(UserHelper $userHelper, ProductHelper $productHelper){
+
+        $this->userHelper = $userHelper;
+        $this->productHelper = $productHelper;
+        $this->user = new User();
+        $this->product = new Product();
+    }
+
+    /**
+     * @Route("/", name="admin")
+     */
+    public function index(): Response
+    {
+        return $this->render('admin/index.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/product/anlegen", name=".productAnlegen")
+     */
+    public function produkteAnlegen(Request $request){
+
+        $productForm = $this->createForm(ProductType::class, $this->product);
+        $productForm->handleRequest($request);
+
+        if($productForm->isSubmitted()){
+            $this->product = $productForm->getData();
+            $this->productHelper->saveProductDb($this->product);
+
+            return $this->render('admin/products.html.twig', [
+                'productForm' => $productForm->createView()
+            ]);
+        }
+
+        return $this->render('admin/index.html.twig', [
+            'productForm' => $productForm->createView()
+        ]);
+    }
+}

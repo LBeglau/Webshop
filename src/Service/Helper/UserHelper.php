@@ -65,7 +65,6 @@ class UserHelper
         dump($input);
         $this->em->persist($input);
         $this->em->flush();
-
         return true;
     }
 
@@ -73,7 +72,7 @@ class UserHelper
         $user = $this->userRepo->findBy([
             'id'=>$id
         ]);
-        yield $user;
+        return $user;
     }
 
     public function getAllUser(){

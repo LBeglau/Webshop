@@ -15,6 +15,14 @@ services:
         # redundant thanks to _defaults, but value is overridable on each service
         autowire: true
 
+    App\Service\Helper\ProductHelper:
+        # redundant thanks to _defaults, but value is overridable on each service
+        autowire: true
+
+    App\Entity\Product:
+        # redundant thanks to _defaults, but value is overridable on each service
+        autowire: true
+
     App\Entity\User:
         # redundant thanks to _defaults, but value is overridable on each service
         autowire: true

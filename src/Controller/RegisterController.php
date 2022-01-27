@@ -15,7 +15,7 @@ class RegisterController extends AbstractController
     private UserHelper $userHelper;
     private User $user;
 
-    public function __construct(UserHelper $userHelper, User $user){
+    public function __construct(UserHelper $userHelper){
 
         $this->userHelper = $userHelper;
         $this->user = new User();
