@@ -33,7 +33,6 @@ class ProductHelper
     }
 
     public function saveProductDb(Product $input){
-        dump($input);
         $this->em->persist($input);
         $this->em->flush();
         return true;
@@ -43,8 +42,7 @@ class ProductHelper
         $product = $this->prodRepository->findBy([
             'id' => $id
         ]);
-        dump($product);die();
-        $this->em->remove($product);
+        $this->em->remove($product[0]);
         $this->em->flush();
         return $this->getProducts();
     }

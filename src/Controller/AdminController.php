@@ -56,8 +56,10 @@ class AdminController extends AbstractController
             $this->product = $productForm->getData();
             $this->productHelper->saveProductDb($this->product);
 
+            $products = $this->productHelper->getProducts();
+
             return $this->render('admin/products.html.twig', [
-                'productForm' => $productForm->createView()
+                'products' => $products
             ]);
         }
 
@@ -71,6 +73,6 @@ class AdminController extends AbstractController
      */
     public function produktDelete($id){
         $this->productHelper->deleteProduct($id);
-        return $this->redirect($this->generateUrl('/admin/'));
+        return $this->redirect($this->generateUrl('admin.admin'));
     }
 }
