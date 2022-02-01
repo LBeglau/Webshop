@@ -23,7 +23,8 @@ class AdminController extends AbstractController
     private User $user;
     private Product $product;
 
-    public function __construct(UserHelper $userHelper, ProductHelper $productHelper){
+    public function __construct(UserHelper $userHelper, ProductHelper $productHelper)
+    {
 
         $this->userHelper = $userHelper;
         $this->productHelper = $productHelper;
@@ -43,12 +44,13 @@ class AdminController extends AbstractController
     /**
      * @Route("/product/anlegen", name=".productAnlegen")
      */
-    public function produkteAnlegen(Request $request){
+    public function produkteAnlegen(Request $request)
+    {
 
         $productForm = $this->createForm(ProductType::class, $this->product);
         $productForm->handleRequest($request);
 
-        if($productForm->isSubmitted()){
+        if ($productForm->isSubmitted()) {
             $this->product = $productForm->getData();
             $this->productHelper->saveProductDb($this->product);
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -15,8 +16,8 @@ class RegisterController extends AbstractController
     private UserHelper $userHelper;
     private User $user;
 
-    public function __construct(UserHelper $userHelper){
-
+    public function __construct(UserHelper $userHelper)
+    {
         $this->userHelper = $userHelper;
         $this->user = new User();
     }
@@ -29,7 +30,7 @@ class RegisterController extends AbstractController
         $userForm = $this->createForm(UserType::class, $this->user);
         $userForm->handleRequest($request);
 
-        if($userForm->isSubmitted()){
+        if ($userForm->isSubmitted()) {
 
             $this->user = $userForm->getData();
             $this->user = $this->userHelper->setNewUser($this->user);

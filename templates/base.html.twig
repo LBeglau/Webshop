@@ -1,19 +1,75 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/base_style.css') }}">
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<nav>
+{#    {% if is_granted('IS_AUTHENTICATED_FULLY') %}#}
+        <div>
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="label">
+
+                <div class="ball" id="ball"></div>
+            </label>
+        </div>
+{#    {% endif %}#}
+    <div class="logo">
+        <h4>
+            <a href="{{ path('home') }}">
+                <span style="color: #dfdfdf; ">Webshop</span>
+            </a>
+        </h4>
+    </div>
+    <div class="shopping-cart">
+        <h4>
+            <a href="{{ path('home') }}">
+                <span style="color: #dfdfdf; ">Warenkorb</span>
+            </a>
+        </h4>
+    </div>
+
+    <ul class="nav-links">
+{#        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}#}
+            <li>
+                <a href="{{ path('register') }}">Registrieren</a>
+            </li>
+{#        {% endif %}#}
+
+{#        {% if is_granted('ROLE_ADMIN') and is_granted('IS_AUTHENTICATED_FULLY') %}#}
+{#            <li>#}
+{#                <a href="{{ path('adminPanel') }}">Admin-Panel</a>#}
+{#            </li>#}
+{#        {% endif %}#}
+
+{#        {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_PrivUser') or is_granted('ROLE_ADMIN') %}#}
+{#            <li>#}
+{#                <a href="{{ path('profile') }}">Mein Profil</a>#}
+{#            </li>#}
+{#        {% endif %}#}
+{#        {% if is_granted('IS_AUTHENTICATED_FULLY') %}#}
+            <li>
+                <a href="{{ path('app_logout') }}">Logout</a>
+            </li>
+{#        {% endif %}#}
+    </ul>
+    <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+</nav>
+{% block body %}{% endblock %}{% block javascripts %}
+    <script src="{{ asset('js/base_script_navbar.js') }}"></script>
+    <script src="{{ asset('js/base_script_themetoggler.js') }}"></script>
+{% endblock %}
+</body>
 </html>
