@@ -33,11 +33,18 @@ class ProductHelper
     }
 
     public function saveProductDb(Product $input){
-        dump($input);
         $this->em->persist($input);
         $this->em->flush();
         return true;
     }
 
+    public function deleteProduct(int $id){
+        $product = $this->prodRepository->findBy([
+            'id' => $id
+        ]);
+        $this->em->remove($product[0]);
+        $this->em->flush();
+        return $this->getProducts();
+    }
 
 }
