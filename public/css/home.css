@@ -108,7 +108,7 @@
 }
 
 .card:hover .contentBox .buy {
-    top: 0;
+    top: 80px;
     opacity: 1;
 }
 
