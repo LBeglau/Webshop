@@ -29,8 +29,8 @@ class HomeController extends AbstractController
     {
         try {
             if(!empty($this->getUser())){
-                dd($this->getUser());
-                $this->user = $this->getUser();
+//                dd($this->getUser());
+//                $this->user = $this->getUser();
             }
         }catch(\Exception $exception){
             return $this->render('home/home.html.twig', [
@@ -40,7 +40,7 @@ class HomeController extends AbstractController
         $products = $this->productHelper->getProducts();
 
         return $this->render('home/home.html.twig', [
-            'user' => $this->user,
+//            'user' => $this->user,
             'products'=> $products
         ]);
     }
