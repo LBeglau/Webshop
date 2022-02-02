@@ -14,10 +14,10 @@
             {% for product in products %}
                 <tr>
                     <td>{{product.id}}</td>
-                    <td>{{product.owner}}</td>
-                    <td>{{product.amount}}</td>
-                    <td>{{product.date}}</td>
-                    <td>{{product.receiver}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.stock}}</td>
+                    <td><a href="{{ path('admin.product.delete',{id: product.id}) }}">x</a></td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -37,12 +37,14 @@ class AdminController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig', [
+        $products = $this->productHelper->getProducts();
+        return $this->render('admin/products.html.twig', [
+            'products' => $products
         ]);
     }
 
     /**
-     * @Route("/product/anlegen", name=".productAnlegen")
+     * @Route("/product/anlegen", name="product.anlegen")
      */
     public function produkteAnlegen(Request $request)
     {
@@ -54,13 +56,23 @@ class AdminController extends AbstractController
             $this->product = $productForm->getData();
             $this->productHelper->saveProductDb($this->product);
 
+            $products = $this->productHelper->getProducts();
+
             return $this->render('admin/products.html.twig', [
-                'productForm' => $productForm->createView()
+                'products' => $products
             ]);
         }
 
         return $this->render('admin/index.html.twig', [
             'productForm' => $productForm->createView()
         ]);
+    }
+
+    /**
+     * @Route("/product/delete/{id}", name="product.delete")
+     */
+    public function produktDelete($id){
+        $this->productHelper->deleteProduct($id);
+        return $this->redirect($this->generateUrl('admin.admin'));
     }
 }
