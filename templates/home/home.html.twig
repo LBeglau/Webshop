@@ -7,20 +7,83 @@
 {% block body %}
     <div class="body-Cards">
         {% for product in products %}
-            <div class="card">
-                <div class="imgBox">
-                    <img src="">
-                </div>
-                <div class="contentBox">
-                    <h3>{{product.name}}</h3>
-                    <h2 class="price">{{product.price}} €</h2>
-                    <a href="#" class="buy">Kaufen</a>
-                </div>
-                <div>
-                    <small><small>Bestand: </small>{{product.amount}}</small>
+            {% if product.id == 1 %}
+            <div class="seperate-Cards">
+                <div class="card">
+                    <div class="imgBox">
+                        <img src="{{ asset('resources/pc.png') }}">
+                    </div>
+                    <div class="contentBox">
+                        <h2>{{ product.name }}</h2>
+                        <h3>{{ product.price }}€</h3>
+                        <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct()">
+                        {{ product.description }}
+                    </div>
                 </div>
             </div>
+            {% elseif product.id == 2  %}
+                <div class="seperate-Cards">
+                    <div class="card">
+                        <div class="imgBox">
+                            <img src="{{ asset('resources/drucker.png') }}">
+                        </div>
+                        <div class="contentBox">
+                            <h2>{{ product.name }}</h2>
+                            <h3>{{ product.price }}€</h3>
+                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct()">
+                            {{ product.description }}
+                        </div>
+                    </div>
+                </div>
+            {% elseif product.id == 3  %}
+                <div class="seperate-Cards">
+                    <div class="card">
+                        <div class="imgBox">
+                            <img src="{{ asset('resources/lautsprecher.png') }}">
+                        </div>
+                        <div class="contentBox">
+                            <h2>{{ product.name }}</h2>
+                            <h3>{{ product.price }}€</h3>
+                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct()">
+                            {{ product.description }}
+                        </div>
+                    </div>
+                </div>
+            {% elseif product.id == 4  %}
+                <div class="seperate-Cards">
+                    <div class="card">
+                        <div class="imgBox">
+                            <img src="{{ asset('resources/scanner.png') }}">
+                        </div>
+                        <div class="contentBox">
+                            <h2>{{ product.name }}</h2>
+                            <h3>{{ product.price }}€</h3>
+                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct()">
+                            {{ product.description }}
+                        </div>
+                    </div>
+                </div>
+            {% elseif product.id == 5  %}
+                <div class="seperate-Cards">
+                    <div class="card">
+                        <div class="imgBox">
+                            <img src="{{ asset('resources/cd-laufwerk.png') }}">
+                        </div>
+                        <div class="contentBox">
+                            <h2>{{ product.name }}</h2>
+                            <h3>{{ product.price }}€</h3>
+                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct()">
+                            {{ product.description }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% endfor %}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/buyProduct.js') }}"></script>
 {% endblock %}
 
 
