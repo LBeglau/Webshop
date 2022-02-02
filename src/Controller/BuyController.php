@@ -13,8 +13,6 @@ class BuyController extends AbstractController
      */
     public function index(): Response
     {
-
-
         return $this->redirect($this->generateUrl('/'));
     }
 }
