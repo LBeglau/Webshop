@@ -13,8 +13,13 @@
     background: #09161d;
 }
 
+.body-Cards .seperate-Cards {
+    padding: 1%;
+}
+
 .card {
     position: relative;
+    border-radius: 50px;
     width: 320px;
     height: 420px;
     background: #2196f3;
@@ -25,7 +30,7 @@
 .card::before {
     content: '';
     position: absolute;
-    top: 120%;
+    top: 100%;
     width: 100%;
     height: 100%;
     background: #e6b43c;
@@ -39,7 +44,7 @@
 }
 
 .card::after {
-    content: 'Sony';
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -51,6 +56,7 @@
 .card .imgBox {
     position: relative;
     width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,7 +70,7 @@
 }
 
 .card:hover .imgBox img {
-    max-width: 50%;
+    max-width: 55%;
 }
 
 .card .contentBox {
@@ -79,7 +85,7 @@
 
 .card .contentBox h3 {
     font-size: 22px;
-    color: #5d4954;
+    color: #09161d;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -95,6 +101,7 @@
 }
 
 .card .contentBox .buy {
+    cursor: pointer;
     position: relative;
     top: 200px;
     opacity: 0;
@@ -106,12 +113,18 @@
     border-radius: 30px;
     letter-spacing: 1px;
     transition: 0.5s;
-}
+    }
 
 .card:hover .contentBox .buy {
-    top: 130px;
+    top: 80px;
     opacity: 1;
 }
+
+.imgBox img.resize {
+    width: 200px; /* you can use % */
+    height: auto;
+}
+
 
 
 
