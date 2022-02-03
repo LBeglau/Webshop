@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BuyController extends AbstractController
 {
+
     /**
      * @Route("/buy/{product}", name="buy", requirements={"page"="/d+"})
      */

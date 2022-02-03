@@ -6,6 +6,7 @@
 {% block title %}Products{% endblock %}
 {% block body %}
     <div class="body-Cards">
+        {{ dump(user) }}
         {% for product in products %}
             <div class="card">
                 <div class="imgBox">
@@ -17,10 +18,11 @@
                     <a href="#" class="buy">Kaufen</a>
                 </div>
                 <div>
-                    <small><small>Bestand: </small>{{product.amount}}</small>
+                    <small><small>Bestand: </small>{{product.stock}}</small>
                 </div>
             </div>
         {% endfor %}
+    <div>
 {% endblock %}
 
 

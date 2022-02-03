@@ -32,6 +32,11 @@ class Product
      */
     private $stock;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Basket::class, mappedBy="products")
+     */
+    private $basket;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Product
     public function setStock(int $stock): self
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getBasket(): ?Basket
+    {
+        return $this->basket;
+    }
+
+    public function setBasket(?Basket $basket): self
+    {
+        $this->basket = $basket;
 
         return $this;
     }
