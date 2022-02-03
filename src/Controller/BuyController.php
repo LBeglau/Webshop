@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BuyController extends AbstractController
 {
+
     /**
      * @Route("/buy/{pId}", name="buy")
      */
