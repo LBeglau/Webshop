@@ -33,6 +33,11 @@ class Product
     private $stock;
 
     /**
+    * @ORM\OneToMany(targetEntity=Basket::class, mappedBy="products")
+     */
+    private $basket;
+
+    /**
      * @ORM\Column(type="string", length=500)
      */
     private $description;
@@ -78,6 +83,17 @@ class Product
         return $this;
     }
 
+    public function getBasket(): ?Basket
+    {
+        return $this->basket;
+    }
+
+    public function setBasket(?Basket $basket): self
+    {
+        $this->basket = $basket;
+        return $this;
+    }
+  
     public function getDescription(): ?string
     {
         return $this->description;
@@ -86,7 +102,6 @@ class Product
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
         return $this;
     }
 }

@@ -45,6 +45,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $phonenum;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Basket::class, mappedBy="owner", cascade={"persist", "remove"})
+     */
+    private $basket;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhonenum(?string $phonenum): self
     {
         $this->phonenum = $phonenum;
+
+        return $this;
+    }
+
+    public function getBasket(): ?Basket
+    {
+        return $this->basket;
+    }
+
+    public function setBasket(Basket $basket): self
+    {
+        // set the owning side of the relation if necessary
+        if ($basket->getOwner() !== $this) {
+            $basket->setOwner($this);
+        }
+
+        $this->basket = $basket;
 
         return $this;
     }
