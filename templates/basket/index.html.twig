@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    {{ parent() }}
+{% endblock %}
+{% block title %}Basket{% endblock %}
+{% block body %}
+
+    <div class="container"><br><br>
+        <h1 class="text-capitalize">Warenkorb</h1>
+        <div class="container-sm border-top table-bordered">
+            <br>
+            <ul class="list-group">
+                <table>
+                    <thead>
+                        <td><li class="list-group-item active" aria-current="true">Your Products</li></td>
+                        <td><li class="list-group-item active">Preis</li></td>
+                        <td><li class="list-group-item active">Lagerbestand</li></td>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>{{product.name}}</td>
+                            <td>{{product.price}}</td>
+                            <td>{{product.stock}}</td>
+                            <td><a href="{{ path('basket.product.delete',{id: product.id}) }}">x</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </ul>
+        </div>
+    </div>
+
+{% endblock body%}
