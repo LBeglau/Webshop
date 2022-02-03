@@ -8,21 +8,96 @@
     <div class="body-Cards">
         {{ dump(user) }}
         {% for product in products %}
-            <div class="card">
-                <div class="imgBox">
-                    <img src="">
-                </div>
-                <div class="contentBox">
-                    <h3>{{product.name}}</h3>
-                    <h2 class="price">{{product.price}} €</h2>
-                    <a href="#" class="buy">Kaufen</a>
-                </div>
-                <div>
-                    <small><small>Bestand: </small>{{product.stock}}</small>
+            {% if product.id == 1 %}
+            <div class="seperate-Cards">
+                <div class="card">
+                    <div class="imgBox">
+                        <img src="{{ asset('resources/pc.png') }}">
+                    </div>
+                    <div class="contentBox">
+                        <h2>{{ product.name }}</h2>
+                        <h3>{{ product.price }}€</h3>
+                        <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(1)">
+                        {{ product.description }}
+                    </div>
                 </div>
             </div>
+            {% elseif product.id == 2  %}
+                <div class="seperate-Cards">
+                    <div class="card">
+                        <div class="imgBox">
+                            <img src="{{ asset('resources/drucker.png') }}">
+                        </div>
+                        <div class="contentBox">
+                            <h2>{{ product.name }}</h2>
+                            <h3>{{ product.price }}€</h3>
+                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(2)">
+                            {{ product.description }}
+                        </div>
+                    </div>
+                </div>
+            {% elseif product.id == 3  %}
+                <div class="seperate-Cards">
+                    <div class="card">
+                        <div class="imgBox">
+                            <img src="{{ asset('resources/lautsprecher.png') }}">
+                        </div>
+                        <div class="contentBox">
+                            <h2>{{ product.name }}</h2>
+                            <h3>{{ product.price }}€</h3>
+                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(3)">
+                            {{ product.description }}
+                        </div>
+                    </div>
+                </div>
+            {% elseif product.id == 4  %}
+                <div class="seperate-Cards">
+                    <div class="card">
+                        <div class="imgBox">
+                            <img src="{{ asset('resources/scanner.png') }}">
+                        </div>
+                        <div class="contentBox">
+                            <h2>{{ product.name }}</h2>
+                            <h3>{{ product.price }}€</h3>
+                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(4)">
+                            {{ product.description }}
+                        </div>
+                    </div>
+                </div>
+            {% elseif product.id == 5  %}
+                <div class="seperate-Cards">
+                    <div class="card">
+                        <div class="imgBox">
+                            <img src="{{ asset('resources/cd-laufwerk.png') }}">
+                        </div>
+                        <div class="contentBox">
+                            <h2>{{ product.name }}</h2>
+                            <h3>{{ product.price }}€</h3>
+                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(5)">
+                            {{ product.description }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% endfor %}
-    <div>
+    </div>
+    <script>
+        function buyProduct(productId) {
+            $.ajax('{{ path('buy', {pId: 'productId'}) }}', {
+                data: productId,
+                success: function () {
+                    // document.location.reload(true);
+                    console.log('jop');
+                },
+                error: function () {
+
+                }
+            });
+        }
+    </script>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}
 
 

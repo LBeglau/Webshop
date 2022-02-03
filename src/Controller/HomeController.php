@@ -48,5 +48,11 @@ class HomeController extends AbstractController
                 'products' => $products
             ]);
         }
+        $products = $this->productHelper->getProducts();
+
+        return $this->render('home/home.html.twig', [
+//          'user' => $this->user,
+            'products'=> $products
+        ]);
     }
 }
