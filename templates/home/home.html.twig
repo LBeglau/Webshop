@@ -6,7 +6,7 @@
 {% block title %}Products{% endblock %}
 {% block body %}
     <div class="body-Cards">
-        {{ dump(user) }}
+{#        {{ dump(user) }}#}
         {% for product in products %}
             {% if product.id == 1 %}
             <div class="seperate-Cards">
@@ -17,7 +17,7 @@
                     <div class="contentBox">
                         <h2>{{ product.name }}</h2>
                         <h3>{{ product.price }}€</h3>
-                        <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(1)">
+                        <input type="button" id="button1" class="buy" value="Kaufen" onclick="buyProduct(1)">
                         {{ product.description }}
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         <div class="contentBox">
                             <h2>{{ product.name }}</h2>
                             <h3>{{ product.price }}€</h3>
-                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(2)">
+                            <input type="button" id="button2" class="buy" value="Kaufen" onclick="buyProduct(2)">
                             {{ product.description }}
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="contentBox">
                             <h2>{{ product.name }}</h2>
                             <h3>{{ product.price }}€</h3>
-                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(3)">
+                            <input type="button" id="button3" class="buy" value="Kaufen" onclick="buyProduct(3)">
                             {{ product.description }}
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <div class="contentBox">
                             <h2>{{ product.name }}</h2>
                             <h3>{{ product.price }}€</h3>
-                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(4)">
+                            <input type="button" id="button4" class="buy" value="Kaufen" onclick="buyProduct(4)">
                             {{ product.description }}
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <div class="contentBox">
                             <h2>{{ product.name }}</h2>
                             <h3>{{ product.price }}€</h3>
-                            <input type="button" id="1" class="buy" value="Kaufen" onclick="buyProduct(5)">
+                            <input type="button" id="button5" class="buy" value="Kaufen" onclick="buyProduct(5)">
                             {{ product.description }}
                         </div>
                     </div>
@@ -84,7 +84,7 @@
     <script>
         function buyProduct(productId) {
             $.ajax('{{ path('buy', {pId: 'productId'}) }}', {
-                data: productId,
+                data: productId.value,
                 success: function () {
                     // document.location.reload(true);
                     console.log('jop');
@@ -97,6 +97,7 @@
     </script>
 {% endblock %}
 {% block javascripts %}
+    <script src="{{ asset('js/cartCounter.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}
 

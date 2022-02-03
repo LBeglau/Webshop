@@ -56,7 +56,7 @@ class UserHelper
         $this->user->setName($parameter->getName());
         $this->user->setPassword($parameter->getPassword());
         $this->user->setPhonenum($parameter->getPhoneNum());
-        $this->user->setRoles(['ROLE_ADMIN']);
+        $this->user->setRoles(['ROLE_USER']);
 
         return $this->user;
     }

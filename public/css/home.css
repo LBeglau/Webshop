@@ -125,6 +125,10 @@
     height: auto;
 }
 
+.contentBox span:not(.button1) {
+    display: none;
+}
+
 
 
 
