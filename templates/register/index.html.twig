@@ -1,13 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RegisterController!{% endblock %}
+{% block title %}Registrieren{% endblock %}
 
 {% block body %}
     <div class="container" style="padding-left: 20%; padding-right: 20%"><br><br>
-        <h2>Register</h2><br>
+        <h2>Registrieren</h2><br>
         <form method="post">
             <div class="form-group background-gray-light">
-                {{form(userForm)}}
+                {{ form_start(userForm) }}
+                {{ form_row(userForm.email, {
+                    label: 'E-Mail-Adresse'
+                }) }}
+                <br>
+                {{ form_row(userForm.password, {
+                    label: 'Passwort'
+                }) }}
+                <br>
+                {{ form_row(userForm.name, {
+                    label: 'Ihr Name'
+                }) }}
+                <br>
+                {{ form_row(userForm.phonenum, {
+                    label: 'Ihr Telefonnummer'
+                }) }}
+                <br>
+                {{ form_row(userForm.register, {
+                    label: 'Erstellen'
+                }) }}
+                {{ form_end(userForm) }}
             </div>
         </form>
     </div>

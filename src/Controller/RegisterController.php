@@ -36,9 +36,7 @@ class RegisterController extends AbstractController
             $this->user = $this->userHelper->setNewUser($this->user);
             $this->userHelper->saveUserDb($this->user);
 
-            return $this->render('home/home.html.twig', [
-                'error' => ''
-            ]);
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('register/index.html.twig', [
