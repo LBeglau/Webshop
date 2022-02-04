@@ -119,3 +119,64 @@ a {
     text-decoration: none;
 }
 
+.cart-counter {
+    border: 1px solid #ffffff20;
+    border-radius: .1rem;
+    width: 5rem;
+    height: 5rem;
+    margin-right: .3rem;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.shopping-cart span {
+    user-select: none;
+    right: 30px;
+    position: relative;
+    background: #e6b43c;
+    width: 1.3rem;
+    height: 1.3rem;
+    font-size: .8rem;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shopping-cart span:not(.animated-counter) {
+    display: none;
+}
+
+.shopping-cart span .animated-counter {
+    animation: count .4s ease-in-out;
+}
+@keyframes count {
+    from {
+        top: .2rem;
+        right: -1.8rem;
+        transform: rotate(120deg);
+    }
+    25% {
+        top: -.2rem;
+        right: -1.2rem;
+        transform: rotate(80deg);
+    }
+    50% {
+        top: -.4rem;
+        right: -.6rem;
+        transform: rotate(60deg);
+    }
+    75% {
+        top: -.4rem;
+        right: 0;
+        transform: rotate(30deg);
+    }
+    to {
+        top: .2rem;
+        right: .3rem;
+        transform: rotate(0deg);
+    }
+}
+

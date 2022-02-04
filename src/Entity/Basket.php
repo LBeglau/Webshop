@@ -95,11 +95,9 @@ class Basket
 
     public function removeProduct(Product $product): self
     {
-        if ($this->products->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getBasket() === $this) {
-                $product->setBasket(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->products->removeElement($product) && $product->getBasket() === $this) {
+            $product->setBasket(null);
         }
 
         return $this;
