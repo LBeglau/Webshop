@@ -37,6 +37,11 @@ class Product
      */
     private $basket;
 
+    /**
+     * @ORM\Column(type="string", length=500)
+     */
+    private $description;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,7 +91,17 @@ class Product
     public function setBasket(?Basket $basket): self
     {
         $this->basket = $basket;
+        return $this;
+    }
+  
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
 
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
         return $this;
     }
 }
