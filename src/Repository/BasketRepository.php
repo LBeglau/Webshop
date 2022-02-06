@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Basket;
+use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,4 +48,12 @@ class BasketRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getBasketByUser($user){
+        $userID = $user->getId();
+        $products = $this->findBy([
+            'owner' => $userID
+        ]);
+        return $products;
+    }
+
 }

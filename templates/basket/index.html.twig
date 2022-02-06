@@ -5,31 +5,37 @@
 {% endblock %}
 {% block title %}Basket{% endblock %}
 {% block body %}
-
+{{ dump(products) }}
     <div class="container"><br><br>
         <h1 class="text-capitalize">Warenkorb</h1>
         <div class="container-sm border-top table-bordered">
             <br>
             <ul class="list-group">
-                <table>
+                <table class="table table-responsive-xl">
                     <thead>
                         <td><li class="list-group-item active" aria-current="true">Your Products</li></td>
-                        <td><li class="list-group-item active">Preis</li></td>
-                        <td><li class="list-group-item active">Lagerbestand</li></td>
+                        <td><li class="list-group-item active">Menge</li></td>
+                        <td class=" col-2"><li class="list-group-item active"></li></td>
                     </thead>
                     <tbody>
-                    {% for product in products %}
-                        <tr>
-                            <td>{{product.name}}</td>
-                            <td>{{product.price}}</td>
-                            <td>{{product.stock}}</td>
-                            <td><a href="{{ path('basket.product.delete',{id: product.id}) }}">x</a></td>
+                    <?php
+                        $x=0;
+                    ?>
+                    {% for index in products %}
+                        <tr class="row-cols-md-2">
+                            <td>{{index.item}}</td>
+                            <!--<td>productprice</td>-->
+                            <td>{{index.amount}}</td>
+                            <td><a href="{{ path('basket.product.delete',{id: index.id}) }}">x</a></td>
                         </tr>
                     {% endfor %}
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btncheck1">{{ user.basketPrice }}</label>
+                    </div>
                     </tbody>
                 </table>
             </ul>
         </div>
     </div>
-
 {% endblock body%}

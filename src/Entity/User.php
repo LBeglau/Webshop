@@ -46,9 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $phonenum;
 
     /**
-     * @ORM\OneToOne(targetEntity=Basket::class, mappedBy="owner", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Basket::class, mappedBy="owner")
      */
     private $basket;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $basketPrice;
 
     public function getId(): ?int
     {
@@ -176,6 +181,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->basket = $basket;
+
+        return $this;
+    }
+
+    public function getBasketPrice(): ?float
+    {
+        return $this->basketPrice;
+    }
+
+    public function setBasketPrice(float $basketPrice): self
+    {
+        $this->basketPrice = $basketPrice;
 
         return $this;
     }

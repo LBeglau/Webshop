@@ -33,7 +33,7 @@ class Product
     private $stock;
 
     /**
-    * @ORM\OneToMany(targetEntity=Basket::class, mappedBy="products")
+     * @ORM\OneToMany(targetEntity=Basket::class, mappedBy="product")
      */
     private $basket;
 

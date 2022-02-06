@@ -41,9 +41,8 @@ class ProductHelper
         $this->em->flush();
         return $this->getProducts();
     }
-
-    public function getProducts(): array
-    {
+  
+    public function getProducts(): array{
         return $this->prodRepository->findAll();
     }
 
