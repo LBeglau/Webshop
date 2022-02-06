@@ -8,7 +8,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ProductHelper
 {
-
     private EntityManagerInterface $em;
     public ProductsRepository $prodRepository;
     private Product $product;

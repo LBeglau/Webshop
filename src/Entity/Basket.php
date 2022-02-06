@@ -32,18 +32,17 @@ class Basket
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="basket")
      */
-    private $products;
+    private $product;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="basket", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="basket")
      */
     private $owner;
 
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->product = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,18 +74,15 @@ class Basket
         return $this;
     }
 
-    /**
-     * @return Collection|Product[]
-     */
-    public function getProducts(): Collection
+    public function getProducts()
     {
-        return $this->products;
+        return $this->product;
     }
 
     public function addProduct(Product $product): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
+        if (!$this->product->contains($product)) {
+            $this->product[] = $product;
             $product->setBasket($this);
         }
 
@@ -95,7 +91,7 @@ class Basket
 
     public function removeProduct(Product $product): self
     {
-        if ($this->products->removeElement($product)) {
+        if ($this->product->removeElement($product)) {
             // set the owning side to null (unless already changed)
             if ($product->getBasket() === $this) {
                 $product->setBasket(null);
