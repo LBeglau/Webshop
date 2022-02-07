@@ -6,7 +6,8 @@
 {% block title %}Products{% endblock %}
 {% block body %}
     <div class="body-Cards">
-{#        {{ dump(user) }}#}
+        {{ dump(user) }}
+        {{ dump(products) }}
         {% for product in products %}
             {% if product.id == 1 %}
             <div class="seperate-Cards">

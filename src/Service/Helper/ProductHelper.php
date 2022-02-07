@@ -42,7 +42,7 @@ class ProductHelper
         return $this->getProducts();
     }
   
-    public function getProducts(): array{
+    public function getProducts(){
         return $this->prodRepository->findAll();
     }
 

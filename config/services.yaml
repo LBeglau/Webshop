@@ -35,6 +35,10 @@ services:
         # redundant thanks to _defaults, but value is overridable on each service
         autowire: true
 
+    App\Controller\BuyController:
+        # redundant thanks to _defaults, but value is overridable on each service
+        autowire: true
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
