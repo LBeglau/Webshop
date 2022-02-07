@@ -21,6 +21,18 @@ class BasketHelper
 
     }
 
+    public function getProductPrice($id){
+        $product = $this->basketRepository->findBy([
+            'id' => $id
+        ]);
+
+        dump($product);
+        //dump($product->getPrice());
+        die();
+
+        return $product->getPrice();
+    }
+
     public function getProducts($user){
         $products = $this->basketRepository->getBasketByUser($user);
         return $products;

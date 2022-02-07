@@ -80,4 +80,8 @@ class UserHelper
         return $users;
     }
 
+    public function addBasketPrice($id){
+
+    }
+
 }
