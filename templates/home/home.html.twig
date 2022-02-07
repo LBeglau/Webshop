@@ -84,14 +84,17 @@
     </div>
     <script>
         function buyProduct(productId) {
-            $.ajax('{{ path('buy', {pId: 'productId'}) }}', {
+            /** Ersetzen der URL '/buy/pId', da Twig vor JS gerendert wird und demnach die URL noch nicht erkannt wird **/
+            var url = '{{ path('buy', {'pId': 'productId'}) }}';
+            url = url.replace('productId', productId);
+
+            $.ajax( url, {
+                type: 'POST',
                 data: productId,
                 success: function () {
                     // document.location.reload(true);
-                    console.log('jop');
                 },
                 error: function () {
-
                 }
             });
         }
