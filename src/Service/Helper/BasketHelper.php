@@ -25,6 +25,22 @@ class BasketHelper
         return $products;
     }
 
+    public function getOneProduct($basketID){
+        $basket = $this->basketRepository->findBy([
+            'id' => $basketID
+        ]);
+        $productID = $basket[0]->getProducts();
+        return $productID;
+    }
+
+    public function deleteProducts($basketId){
+        $basket = $this->basketRepository->findBy([
+            'id' => $basketId
+        ]);
+        $this->em->remove($basket[0]);
+        $this->em->flush();
+    }
+
     public function addProduct($products, $user){
         //dump($products);
         $product = $products[0];

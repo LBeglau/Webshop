@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\Helper\BasketHelper;
 use App\Service\Helper\ProductHelper;
+use App\Service\Helper\UserHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +15,13 @@ class BasketController extends AbstractController
 
     private BasketHelper $basketHelper;
     private ProductHelper $productHelper;
+    private UserHelper $userHelper;
 
-    public function __construct(BasketHelper $basketHelper, ProductHelper $productHelper)
+    public function __construct(BasketHelper $basketHelper, ProductHelper $productHelper, UserHelper $userHelper)
     {
         $this->basketHelper = $basketHelper;
         $this->productHelper = $productHelper;
+        $this->userHelper = $userHelper;
     }
 
     /**
@@ -39,9 +42,12 @@ class BasketController extends AbstractController
     }
 
     /**
-     * @Route("/basket", name="basket.product.delete")
+     * @Route("/basket/{id}", name="basket.product.delete")
      */
-    public function deleteBasketProduct(){
+    public function deleteBasketProduct($id){
+        $this->userHelper->substractBasketPrice($this->productHelper->getProductbyID($this->basketHelper->getOneProduct($id)), $this->getUser());
+        $this->basketHelper->deleteProducts($id);
 
+        return $this->redirect($this->generateUrl('basket'));
     }
 }

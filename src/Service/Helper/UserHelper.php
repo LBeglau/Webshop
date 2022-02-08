@@ -90,4 +90,23 @@ class UserHelper
         $this->em->flush();
     }
 
+    public function substractBasketPrice($product, $user)
+    {
+        $substractingPrice = $product[0]->getPrice();
+        $this->user->setRoles($user->getRoles());
+        $this->user->setBasket($user->getBasket());
+        $this->user->setPhonenum($user->getPhonenum());
+        $this->user->setPassword($user->getPassword());
+        $this->user->setName($user->getName());
+        $this->user->setEmail($user->getEmail());
+
+        dd($this->user);
+        $price = $user->getPrice();
+        $basketPrice = $price - $substractingPrice;
+        $user->setBasketPrice($basketPrice);
+
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+
 }

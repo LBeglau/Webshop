@@ -18,9 +18,6 @@
                         <td class=" col-2"><li class="list-group-item active"></li></td>
                     </thead>
                     <tbody>
-                    <?php
-                        $x=0;
-                    ?>
                     {% for index in products %}
                         <tr class="row-cols-md-2">
                             <td>{{index.item}}</td>
@@ -28,13 +25,13 @@
                             <td><a href="{{ path('basket.product.delete',{id: index.id}) }}">x</a></td>
                         </tr>
                     {% endfor %}
-                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck1">{{ user.basketPrice }}</label>
-                    </div>
                     </tbody>
                 </table>
             </ul>
+            <div class="btn-group align-content-center container-lg" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck1">Kaufen    {{ user.basketPrice }}</label>
+            </div>
         </div>
     </div>
 {% endblock body%}
