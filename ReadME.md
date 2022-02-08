@@ -1,4 +1,4 @@
-#1.) 
+#1 
 Zuerst:
 -> Neuste Docker Downloaden
 -> im Terminal in das Verzeichnis wechseln in dem das Projekt liegt
