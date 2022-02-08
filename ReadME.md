@@ -1,15 +1,15 @@
-#1 
+##1.) 
 Zuerst:
--> Neuste Docker Downloaden
+-> Neuste Docker-Version downloaden
 -> im Terminal in das Verzeichnis wechseln in dem das Projekt liegt
     [ Beispielsweise liegt das Projekt unter "/Dokumente/git/Webshop"
-        1. Bei der Situation würde man im Terminal, sofer man im Home ist: "cd /Dokumente/git/Webshop" eingeben um in das Verzeichnis zu kommen
-        2. Um sicherzustellen, dass man in dem Verzeichnis ist am besten "ls" in der Kommandozeile einzugeben, um angezeigt zu bekommen
+        1. Bei der Situation würde man im Terminal, sofern man sich in Home befindet: "cd /Dokumente/git/Webshop" eingeben um in das Verzeichnis zu kommen
+        2. Um sicherzustellen, dass man in dem Verzeichnis ist am besten "ls" in der Kommandozeile einzugeben, um angezeigt zu bekommen,
            ob die Dateien auch in diesem Ordner sind. !!! Es ist erkennbar, sofern eine der Dateien "docker-compose.yml" heißt und auch die "composer.json" in dem                Verzeichnis ist.
     ]
 
 ##2.) 
-Der zweite Schritt ist die Virtuellen Container hockzufahren.
+Der zweite Schritt ist die Virtuellen Container hochzufahren.
 Das funktioniert mit: "docker-compose up"
 
 ##!!! Sofern das nicht funktioniert 
@@ -18,7 +18,7 @@ Das funktioniert mit: "docker-compose up"
 /3. Kontaktieren sie Mike: +49 176 70047943
 
 ##3.) 
-Sofern alles geklappt hat müsste es sichtbar sein das die Container laufen, da das benutzte Terminal Fenster als Log der Server dient.
+Sofern alles geklappt hat müsste sichtbar sein, dass die Container laufen, da das benutzte Terminal Fenster als Log der Server dient.
 
 ##4.)
 Anschließen gehen Sie in ein weiteres Terminal Fenster und gehen wieder per Kommantozeile in das Verzeichnis in dem das Projekt liegt.
