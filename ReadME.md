@@ -28,7 +28,7 @@ Anschließen gehen Sie in ein weiteres Terminal Fenster und gehen wieder per Kom
     /2. und ein "composer install" ausführen.
     /3. anschließend wär es auch praktisch vielleicht ein "yarn install" zu machen
 
-Die csv-Dateien mit Beispielinhalten befinden sich ebenfalls hier im Repository. ()
+Die csv-Dateien mit Beispielinhalten befinden sich ebenfalls hier im Repository. (Datenbank.zip)
 
 Wenn alles geklappt hat und die Container am laufen sind können Sie auch in einen Browser gehen (am besten Chrome), einfach die Adresse
 http://localhost:8888/home eingeben und die Website sollte laufen.
