@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\Helper\BasketHelper;
+use App\Service\Helper\ProductHelper;
 use App\Service\Helper\UserHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,11 +14,13 @@ class BuyController extends AbstractController
 {
 
     private UserHelper $userHelper;
+    private ProductHelper $productHelper;
     private BasketHelper $basketHelper;
 
-    public function __construct(UserHelper $userHelper, BasketHelper $basketHelper)
+    public function __construct(UserHelper $userHelper, ProductHelper $productHelper, BasketHelper $basketHelper)
     {
         $this->userHelper = $userHelper;
+        $this->productHelper = $productHelper;
         $this->basketHelper = $basketHelper;
     }
 
@@ -26,15 +29,12 @@ class BuyController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        dump($request->attributes->get('pId'));
         try {
-            $this->userHelper->addBasketPrice($this->basketHelper->getProductPrice($request->attributes->get('pId')));
+            $this->userHelper->addBasketPrice($this->productHelper->getProductPrice($request->attributes->get('pId')), $this->getUser());
+            $this->basketHelper->addProduct($this->productHelper->getProductbyID($request->attributes->get('pId')), $this->getUser());
         }catch (\Exception $exception){
-
+            return $this->json('error');
         }
-        /** Hier Service Klasse aufrufen in der Query gebaut werden soll -> $request an die Service Klasse übergeben und die ProductId wie unten zu sehen rausziehen **/
-        $productIdForQuery = $request->attributes->get('pId');
-
         return $this->json('success');
     }
 }

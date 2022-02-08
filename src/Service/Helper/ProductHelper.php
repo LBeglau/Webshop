@@ -46,4 +46,11 @@ class ProductHelper
         return $this->prodRepository->findAll();
     }
 
+    public function getProductPrice($id){
+        //dump($id);
+        $product = $this->getProductbyID($id);
+        //dump($product);
+        return $product[0]->getPrice();
+    }
+
 }

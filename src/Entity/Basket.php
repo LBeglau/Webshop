@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BasketRepository;
+use App\Entity\Product;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -42,7 +43,7 @@ class Basket
 
     public function __construct()
     {
-        $this->product = new ArrayCollection();
+        $this->product = new Product();
     }
 
     public function getId(): ?int
@@ -81,10 +82,7 @@ class Basket
 
     public function addProduct(Product $product): self
     {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
-            $product->setBasket($this);
-        }
+        $this->product = $product;
 
         return $this;
     }
@@ -97,7 +95,6 @@ class Basket
                 $product->setBasket(null);
             }
         }
-
         return $this;
     }
 

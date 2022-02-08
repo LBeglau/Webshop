@@ -13,8 +13,8 @@
 <body>
 
 <nav>
-{#    {% if is_granted('IS_AUTHENTICATED_FULLY') %}#}
-{#    {% endif %}#}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% endif %}
     <div class="logo">
         <h4>
             <a href="{{ path('home') }}">
@@ -31,28 +31,27 @@
     </div>
 
     <ul class="nav-links">
-{#        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}#}
+        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
             <li>
                 <a href="{{ path('register') }}">Registrieren</a>
             </li>
-{#        {% endif %}#}
+        {% endif %}
 
-{#        {% if is_granted('ROLE_ADMIN') and is_granted('IS_AUTHENTICATED_FULLY') %}#}
-{#            <li>#}
-{#                <a href="{{ path('adminPanel') }}">Admin-Panel</a>#}
-{#            </li>#}
-{#        {% endif %}#}
-
-{#        {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_PrivUser') or is_granted('ROLE_ADMIN') %}#}
-{#            <li>#}
-{#                <a href="{{ path('profile') }}">Mein Profil</a>#}
-{#            </li>#}
-{#        {% endif %}#}
-{#        {% if is_granted('IS_AUTHENTICATED_FULLY') %}#}
+        {% if is_granted('ROLE_ADMIN') and is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li>
+                <a href="{{ path('admin.admin') }}">Admin-Panel</a>
+            </li>
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_PrivUser') or is_granted('ROLE_ADMIN') %}
+            <li>
+                {# <a href="{{ path('profile') }}">Mein Profil</a>#}
+            </li>
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li>
                 <a href="{{ path('app_logout') }}">Logout</a>
             </li>
-{#        {% endif %}#}
+        {% endif %}
     </ul>
     <div class="burger">
         <div class="line1"></div>

@@ -5,9 +5,10 @@
 {% endblock %}
 {% block title %}Products{% endblock %}
 {% block body %}
+<div class="container">
     <div class="body-Cards">
-        {{ dump(user) }}
-        {{ dump(products) }}
+        {# {{ dump(user) }} #}
+        {# {{ dump(products) }} #}
         {% for product in products %}
             {% if product.id == 1 %}
             <div class="seperate-Cards">
@@ -89,16 +90,17 @@
             url = url.replace('productId', productId);
 
             $.ajax( url, {
-                type: 'POST',
+                type: 'GET',
                 data: productId,
                 success: function () {
-                    // document.location.reload(true);
+                        //document.location.reload();
                 },
                 error: function () {
                 }
             });
         }
     </script>
+</div>
 {% endblock %}
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

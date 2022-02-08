@@ -2,39 +2,40 @@
 
 namespace App\Service\Helper;
 
-use App\Entity\Product;
-use App\Entity\User;
+use App\Entity\Basket;
 use App\Repository\BasketRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class BasketHelper
 {
-    private ProductHelper $productHelper;
     private BasketRepository $basketRepository;
+    private Basket $basket;
+    private EntityManagerInterface $em;
 
-    public function __construct(ProductHelper $productHelper, BasketRepository $basketRepository)
+    public function __construct(BasketRepository $basketRepository, EntityManagerInterface $em)
     {
-        $this->productHelper = $productHelper;
         $this->basketRepository = $basketRepository;
-    }
-
-    public function newProduct(){
-
-    }
-
-    public function getProductPrice($id){
-        $product = $this->basketRepository->findBy([
-            'id' => $id
-        ]);
-
-        dump($product);
-        //dump($product->getPrice());
-        die();
-
-        return $product->getPrice();
+        $this->basket = new Basket();
+        $this->em = $em;
     }
 
     public function getProducts($user){
         $products = $this->basketRepository->getBasketByUser($user);
         return $products;
+    }
+
+    public function addProduct($products, $user){
+        //dump($products);
+        $product = $products[0];
+        $this->basket->setOwner($user);
+        $this->basket->setAmount(1);
+        $this->basket->setItem($product->getName());
+        $this->basket = $this->basket->addProduct($product);
+        //dump($this->basket);
+        $input = $this->basket;
+        $this->em->persist($input);
+        //dd($this->basket);
+        $this->em->flush();
     }
 }

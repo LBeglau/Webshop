@@ -80,8 +80,14 @@ class UserHelper
         return $users;
     }
 
-    public function addBasketPrice($id){
+    public function addBasketPrice($productPrice,$user){
+        //dump($user);
+        $basketPrice = $user->getBasketPrice();
+        $basketPrice = $basketPrice + $productPrice;
+        $user->setBasketPrice($basketPrice);
 
+        $this->em->persist($user);
+        $this->em->flush();
     }
 
 }
