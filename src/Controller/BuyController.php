@@ -37,4 +37,10 @@ class BuyController extends AbstractController
         }
         return $this->json('success');
     }
+
+    public function payProducts(){
+
+
+
+    }
 }

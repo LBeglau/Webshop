@@ -57,6 +57,7 @@ class UserHelper
         $this->user->setPassword($parameter->getPassword());
         $this->user->setPhonenum($parameter->getPhoneNum());
         $this->user->setRoles(['ROLE_ADMIN']);
+        $this->user->setBasketPrice(0.000);
 
         return $this->user;
     }
@@ -71,6 +72,13 @@ class UserHelper
     public function getUserbyID($id){
         $user = $this->userRepo->findBy([
             'id'=>$id
+        ]);
+        return $user;
+    }
+
+    public function getUserbyEmail($email){
+        $user = $this->userRepo->findBy([
+            'email'=>$email
         ]);
         return $user;
     }
@@ -100,7 +108,7 @@ class UserHelper
         $this->user->setName($user->getName());
         $this->user->setEmail($user->getEmail());
 
-        dd($this->user);
+        //dd($this->user);
         $price = $user->getPrice();
         $basketPrice = $price - $substractingPrice;
         $user->setBasketPrice($basketPrice);

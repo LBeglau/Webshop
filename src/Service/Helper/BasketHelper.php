@@ -29,6 +29,7 @@ class BasketHelper
         $basket = $this->basketRepository->findBy([
             'id' => $basketID
         ]);
+        dump($basket);
         $productID = $basket[0]->getProducts();
         return $productID;
     }

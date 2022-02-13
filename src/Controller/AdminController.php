@@ -48,7 +48,6 @@ class AdminController extends AbstractController
      */
     public function produkteAnlegen(Request $request)
     {
-
         $productForm = $this->createForm(ProductType::class, $this->product);
         $productForm->handleRequest($request);
 

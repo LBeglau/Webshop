@@ -23,6 +23,10 @@ services:
         # redundant thanks to _defaults, but value is overridable on each service
         autowire: true
 
+    App\Service\Helper\OrderHelper:
+        # redundant thanks to _defaults, but value is overridable on each service
+        autowire: true
+
     App\Entity\Product:
         # redundant thanks to _defaults, but value is overridable on each service
         autowire: true

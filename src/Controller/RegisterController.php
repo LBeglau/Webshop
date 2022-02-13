@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\Helper\ProductHelper;
 use App\Service\Helper\UserHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,11 +16,13 @@ class RegisterController extends AbstractController
 
     private UserHelper $userHelper;
     private User $user;
+    private ProductHelper $productHelper;
 
-    public function __construct(UserHelper $userHelper)
+    public function __construct(UserHelper $userHelper, ProductHelper $productHelper)
     {
         $this->userHelper = $userHelper;
         $this->user = new User();
+        $this->productHelper = $productHelper;
     }
 
     /**
@@ -36,9 +39,12 @@ class RegisterController extends AbstractController
             $this->user = $this->userHelper->setNewUser($this->user);
             $this->userHelper->saveUserDb($this->user);
 
-            return $this->render('home/home.html.twig', [
-                'error' => ''
-            ]);
+            $products = $this->productHelper->getProducts();
+
+            return $this->redirect($this->generateUrl('home',[
+                'error' => '',
+                'products' => $products,
+            ]));
         }
 
         return $this->render('register/index.html.twig', [
